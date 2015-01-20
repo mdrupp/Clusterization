@@ -1,0 +1,129 @@
+﻿@model Clustering.Web.Models.DocumentModel
+
+@{
+    ViewBag.Title = "Інформація про книгу";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="site-title">
+                <h3>@ViewBag.Title</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+<h2>@Model.Title</h2>
+<table>
+
+    <tr>
+        <td>Номер
+        </td>
+        <td>
+            @Model.Id
+        </td>
+    </tr>
+    <tr>
+        <td>Назва
+        </td>
+        <td>
+            @Model.Title
+        </td>
+    </tr>
+    @if (!string.IsNullOrEmpty(Model.Author))
+    {
+        <tr>
+            <td>Автор
+            </td>
+            <td>
+                @Model.Author
+            </td>
+        </tr>
+    }
+    
+    @if (!string.IsNullOrEmpty(Model.Editor))
+    {
+        <tr>
+            <td>Редакція
+            </td>
+            <td>
+                @Model.Editor
+            </td>
+        </tr>
+    }
+    
+    @if (!string.IsNullOrEmpty(Model.Edition))
+    {
+        <tr>
+            <td>Примітки
+            </td>
+            <td>
+                @Model.Edition
+            </td>
+        </tr>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Serial))
+    {
+        <tr>
+            <td>Серія
+            </td>
+            <td>
+                @Model.Serial
+            </td>
+        </tr>
+    }
+    
+    @if (!string.IsNullOrEmpty(Model.BBK))
+    {
+        <tr>
+            <td>Індекси ББК
+            </td>
+            <td>
+                @Model.BBK
+            </td>
+        </tr>
+    }
+    @if (!string.IsNullOrEmpty(Model.Publish))
+    {
+        <tr>
+            <td>Видання
+            </td>
+            <td>
+                @Model.Publish
+            </td>
+        </tr>
+    }
+    @if (!string.IsNullOrEmpty(Model.City))
+    {
+        <tr>
+            <td>Місце
+            </td>
+            <td>
+                @Model.City
+            </td>
+        </tr>
+    }
+    @if (!string.IsNullOrEmpty(Model.Year))
+    {
+        <tr>
+            <td>Рік
+            </td>
+            <td>
+                @Model.Year
+            </td>
+        </tr>
+    }
+    @if (!string.IsNullOrEmpty(Model.Pages))
+    {
+        <tr>
+            <td>Відомості
+            </td>
+            <td>
+                @Model.Pages
+            </td>
+        </tr>
+    }
+</table>
+<h4>@Html.ActionLink("Назад", "Index", "Cluster", new { id = Model.ClusterId }, null)</h4>

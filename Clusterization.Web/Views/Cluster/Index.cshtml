@@ -1,0 +1,40 @@
+﻿@model Clustering.Web.Models.ClusterModel
+
+@{
+    ViewBag.Title = "Бібліотечні описи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="site-title">
+                <h3>@ViewBag.Title</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+<h2>Розділ №@Model.Id - @Model.Title</h2>
+<h4>@Html.ActionLink("Назад","Index","Home",null,null)</h4>
+<table>
+    <tr>
+        <th>№ док.</th>
+        <th>Назва</th>
+        <th>Індекси ББК</th>
+    </tr>
+
+    @foreach (var book in Model.Books)
+    {
+        <tr>
+            <td>@book.Id</td>
+            <td>
+                @Html.ActionLink(book.Title, "Index", "Document", new { id = book.Id }, null)
+            </td>
+            <td>
+                @book.BBK
+            </td>
+        </tr>
+    }
+
+</table>
+<h4>@Html.ActionLink("Назад","Index","Home",null,null)</h4>

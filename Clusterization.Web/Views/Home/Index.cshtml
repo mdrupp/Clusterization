@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Clustering.Web.Models.ClusterModel>
+
+@{
+    ViewBag.Title = "Бібліотечні описи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="site-title">
+                <h3>@ViewBag.Title</h3>
+                <!--<h2>Clusters</h2>-->
+            </hgroup>
+            <!--<p>
+               Here you can put any text
+            </p>-->
+        </div>
+    </section>
+}
+<h2>Розділи</h2>
+
+<table>
+    <tr>
+        <th>№ розділу</th>
+        <th>Тематика</th>
+    </tr>
+
+    @foreach (var cluster in Model)
+    {
+        <tr>
+            <!--<td>
+                    Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>-->
+            <td>@cluster.Id</td>
+            <td>
+                @Html.ActionLink(cluster.Title, "Index", "Cluster", new { id = cluster.Id}, null)
+            </td>
+        </tr>
+    }
+
+</table>

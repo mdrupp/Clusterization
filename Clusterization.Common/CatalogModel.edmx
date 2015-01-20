@@ -1,0 +1,870 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BiblioModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BiblioModelStoreContainer">
+          <EntitySet Name="CentroidClusters" EntityType="BiblioModel.Store.CentroidClusters" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClusteredBooks" EntityType="BiblioModel.Store.ClusteredBooks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClusterErrors" EntityType="BiblioModel.Store.ClusterErrors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Document" EntityType="BiblioModel.Store.Document" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DocumentTypes" EntityType="BiblioModel.Store.DocumentTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LastBookUpdates" EntityType="BiblioModel.Store.LastBookUpdates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SearchResults" EntityType="BiblioModel.Store.SearchResults" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Snippets" EntityType="BiblioModel.Store.Snippets" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Words" EntityType="BiblioModel.Store.Words" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WordsFrequency" EntityType="BiblioModel.Store.WordsFrequency" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CentroidClusters_CentroidClusters" Association="BiblioModel.Store.FK_CentroidClusters_CentroidClusters">
+            <End Role="CentroidClusters" EntitySet="CentroidClusters" />
+            <End Role="CentroidClusters1" EntitySet="CentroidClusters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CentroidClusters_Document" Association="BiblioModel.Store.FK_CentroidClusters_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="CentroidClusters" EntitySet="CentroidClusters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusteredBooks_CentroidClusters" Association="BiblioModel.Store.FK_ClusteredBooks_CentroidClusters">
+            <End Role="CentroidClusters" EntitySet="CentroidClusters" />
+            <End Role="ClusteredBooks" EntitySet="ClusteredBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusteredBooks_Document" Association="BiblioModel.Store.FK_ClusteredBooks_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="ClusteredBooks" EntitySet="ClusteredBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusterErrors_Document" Association="BiblioModel.Store.FK_ClusterErrors_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="ClusterErrors" EntitySet="ClusterErrors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusterErrors_Document1" Association="BiblioModel.Store.FK_ClusterErrors_Document1">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="ClusterErrors" EntitySet="ClusterErrors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_DocumentTypes" Association="BiblioModel.Store.FK_Document_DocumentTypes">
+            <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastBookUpdates_Document" Association="BiblioModel.Store.FK_LastBookUpdates_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="LastBookUpdates" EntitySet="LastBookUpdates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastBookUpdates_documents" Association="BiblioModel.Store.FK_LastBookUpdates_documents">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="LastBookUpdates" EntitySet="LastBookUpdates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WordsFrequency_Words1" Association="BiblioModel.Store.FK_WordsFrequency_Words1">
+            <End Role="Words" EntitySet="Words" />
+            <End Role="WordsFrequency" EntitySet="WordsFrequency" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CentroidClusters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CentroidId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="ClusteredBooks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClusterId" Type="int" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClusterErrors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Iteration" Type="int" Nullable="false" />
+          <Property Name="ClusterNumber" Type="int" Nullable="false" />
+          <Property Name="OldCentriodId" Type="int" Nullable="false" />
+          <Property Name="NewCentroidId" Type="int" Nullable="false" />
+          <Property Name="Error" Type="float" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="254" />
+          <Property Name="AdditionalTitle" Type="varchar" MaxLength="254" />
+          <Property Name="Serial" Type="varchar" MaxLength="254" />
+          <Property Name="BBK" Type="varchar" MaxLength="254" />
+          <Property Name="Author" Type="varchar" MaxLength="254" />
+          <Property Name="Editor" Type="varchar" MaxLength="254" />
+          <Property Name="Publish" Type="varchar" MaxLength="254" />
+          <Property Name="City" Type="varchar" MaxLength="80" />
+          <Property Name="ImprintYear" Type="varchar" MaxLength="50" />
+          <Property Name="FirstYear" Type="int" />
+          <Property Name="LastYear" Type="int" />
+          <Property Name="PartNumber" Type="int" />
+          <Property Name="Part" Type="varchar" MaxLength="250" />
+          <Property Name="PartName" Type="varchar" MaxLength="254" />
+          <Property Name="Remark" Type="varchar" MaxLength="254" />
+          <Property Name="Illustrations" Type="varchar" MaxLength="150" />
+          <Property Name="Stuff" Type="varchar" MaxLength="250" />
+          <Property Name="Biblio" Type="varchar" MaxLength="150" />
+          <Property Name="ISBN" Type="varchar" MaxLength="64" />
+          <Property Name="ISSN" Type="varchar" MaxLength="32" />
+          <Property Name="LongFileName" Type="varchar" MaxLength="254" />
+          <Property Name="LocalCode" Type="varchar" MaxLength="20" />
+          <Property Name="LocalNumber" Type="varchar" MaxLength="32" />
+          <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="CreateDate" Type="bigint" Nullable="false" />
+          <Property Name="UpdateDate" Type="bigint" Nullable="false" />
+          <Property Name="Pages" Type="varchar" MaxLength="50" />
+          <Property Name="Edition" Type="varchar" MaxLength="64" />
+          <Property Name="Volume" Type="varchar" MaxLength="20" />
+          <Property Name="VolumeNumber" Type="varchar" MaxLength="250" />
+          <Property Name="ParentAuthor" Type="varchar" MaxLength="250" />
+          <Property Name="ParentPublish" Type="varchar" MaxLength="64" />
+          <Property Name="ParentEdition" Type="varchar" MaxLength="64" />
+          <Property Name="ParentEditor" Type="varchar" MaxLength="250" />
+          <Property Name="ParentAdditionalTitle" Type="varchar" MaxLength="250" />
+          <Property Name="ParentImprintYear" Type="varchar" MaxLength="50" />
+          <Property Name="ParentCity" Type="varchar" MaxLength="80" />
+          <Property Name="ParentTitle" Type="varchar" MaxLength="200" />
+          <Property Name="ParentVolumeName" Type="varchar" MaxLength="250" />
+          <Property Name="ParentPartName" Type="varchar" MaxLength="250" />
+          <Property Name="ParentVolume" Type="varchar" MaxLength="50" />
+          <Property Name="ParentPart" Type="varchar" MaxLength="50" />
+          <Property Name="SerialParal" Type="varchar" MaxLength="250" />
+          <Property Name="SerialAdditionalTitle" Type="varchar" MaxLength="250" />
+          <Property Name="SerialEditor" Type="varchar" MaxLength="250" />
+          <Property Name="SerialPart" Type="varchar" MaxLength="25" />
+          <Property Name="SerialPartName" Type="varchar" MaxLength="250" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="25" />
+          <Property Name="SerialISSN" Type="varchar" MaxLength="30" />
+          <Property Name="IsParent" Type="smallint" />
+          <Property Name="Annotation1" Type="varchar" MaxLength="254" />
+          <Property Name="Annotation2" Type="varchar" MaxLength="254" />
+          <Property Name="Annotation3" Type="varchar" MaxLength="254" />
+          <Property Name="Annotation4" Type="varchar" MaxLength="254" />
+          <Property Name="Annotation5" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation6" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation7" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation8" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation9" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation10" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation11" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation12" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation13" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation14" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation15" Type="varchar" MaxLength="251" />
+          <Property Name="Annotation16" Type="varchar" MaxLength="251" />
+        </EntityType>
+        <EntityType Name="DocumentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="254" />
+        </EntityType>
+        <EntityType Name="LastBookUpdates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="Updated" Type="datetime" Nullable="false" />
+          <Property Name="ComparedWithBookId" Type="int" Nullable="false" />
+          <Property Name="LastSnippet" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SearchResults">
+          <Key>
+            <PropertyRef Name="WordId1" />
+            <PropertyRef Name="WordId2" />
+          </Key>
+          <Property Name="WordId1" Type="int" Nullable="false" />
+          <Property Name="WordId2" Type="int" Nullable="false" />
+          <Property Name="Count" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Snippets">
+          <Key>
+            <PropertyRef Name="WordId1" />
+            <PropertyRef Name="WordId2" />
+          </Key>
+          <Property Name="WordId1" Type="int" Nullable="false" />
+          <Property Name="WordId2" Type="int" Nullable="false" />
+          <Property Name="Snippet" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Words">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Word" Type="nvarchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="WordsFrequency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WordId" Type="int" Nullable="false" />
+          <Property Name="Frequency" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CentroidClusters_CentroidClusters">
+          <End Role="CentroidClusters" Type="BiblioModel.Store.CentroidClusters" Multiplicity="0..1" />
+          <End Role="CentroidClusters1" Type="BiblioModel.Store.CentroidClusters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CentroidClusters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CentroidClusters1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CentroidClusters_Document">
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="1" />
+          <End Role="CentroidClusters" Type="BiblioModel.Store.CentroidClusters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CentroidClusters">
+              <PropertyRef Name="CentroidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusteredBooks_CentroidClusters">
+          <End Role="CentroidClusters" Type="BiblioModel.Store.CentroidClusters" Multiplicity="1" />
+          <End Role="ClusteredBooks" Type="BiblioModel.Store.ClusteredBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CentroidClusters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusteredBooks">
+              <PropertyRef Name="ClusterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusteredBooks_Document">
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="1" />
+          <End Role="ClusteredBooks" Type="BiblioModel.Store.ClusteredBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusteredBooks">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusterErrors_Document">
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="1" />
+          <End Role="ClusterErrors" Type="BiblioModel.Store.ClusterErrors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusterErrors">
+              <PropertyRef Name="OldCentriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusterErrors_Document1">
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="1" />
+          <End Role="ClusterErrors" Type="BiblioModel.Store.ClusterErrors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusterErrors">
+              <PropertyRef Name="NewCentroidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_DocumentTypes">
+          <End Role="DocumentTypes" Type="BiblioModel.Store.DocumentTypes" Multiplicity="1" />
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastBookUpdates_Document">
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="1" />
+          <End Role="LastBookUpdates" Type="BiblioModel.Store.LastBookUpdates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastBookUpdates">
+              <PropertyRef Name="ComparedWithBookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastBookUpdates_documents">
+          <End Role="Document" Type="BiblioModel.Store.Document" Multiplicity="1" />
+          <End Role="LastBookUpdates" Type="BiblioModel.Store.LastBookUpdates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastBookUpdates">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WordsFrequency_Words1">
+          <End Role="Words" Type="BiblioModel.Store.Words" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WordsFrequency" Type="BiblioModel.Store.WordsFrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Words">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WordsFrequency">
+              <PropertyRef Name="WordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BiblioModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BiblioEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="CentroidClusters" EntityType="BiblioModel.CentroidCluster" />
+          <EntitySet Name="ClusteredBooks" EntityType="BiblioModel.ClusteredBook" />
+          <EntitySet Name="ClusterErrors" EntityType="BiblioModel.ClusterError" />
+          <EntitySet Name="Documents" EntityType="BiblioModel.Document" />
+          <EntitySet Name="DocumentTypes" EntityType="BiblioModel.DocumentType" />
+          <EntitySet Name="LastBookUpdates" EntityType="BiblioModel.LastBookUpdate" />
+          <EntitySet Name="SearchResults" EntityType="BiblioModel.SearchResult" />
+          <EntitySet Name="Snippets" EntityType="BiblioModel.Snippet" />
+          <EntitySet Name="Words" EntityType="BiblioModel.Word" />
+          <EntitySet Name="WordsFrequencies" EntityType="BiblioModel.WordsFrequency" />
+          <AssociationSet Name="FK_CentroidClusters_CentroidClusters" Association="BiblioModel.FK_CentroidClusters_CentroidClusters">
+            <End Role="CentroidClusters" EntitySet="CentroidClusters" />
+            <End Role="CentroidClusters1" EntitySet="CentroidClusters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CentroidClusters_Document" Association="BiblioModel.FK_CentroidClusters_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="CentroidClusters" EntitySet="CentroidClusters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusteredBooks_CentroidClusters" Association="BiblioModel.FK_ClusteredBooks_CentroidClusters">
+            <End Role="CentroidClusters" EntitySet="CentroidClusters" />
+            <End Role="ClusteredBooks" EntitySet="ClusteredBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusteredBooks_Document" Association="BiblioModel.FK_ClusteredBooks_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="ClusteredBooks" EntitySet="ClusteredBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusterErrors_Document" Association="BiblioModel.FK_ClusterErrors_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="ClusterErrors" EntitySet="ClusterErrors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClusterErrors_Document1" Association="BiblioModel.FK_ClusterErrors_Document1">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="ClusterErrors" EntitySet="ClusterErrors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_DocumentTypes" Association="BiblioModel.FK_Document_DocumentTypes">
+            <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastBookUpdates_Document" Association="BiblioModel.FK_LastBookUpdates_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="LastBookUpdates" EntitySet="LastBookUpdates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastBookUpdates_documents" Association="BiblioModel.FK_LastBookUpdates_documents">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="LastBookUpdates" EntitySet="LastBookUpdates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WordsFrequency_Words1" Association="BiblioModel.FK_WordsFrequency_Words1">
+            <End Role="Words" EntitySet="Words" />
+            <End Role="WordsFrequency" EntitySet="WordsFrequencies" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CentroidCluster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CentroidId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="CentroidClusters1" Relationship="BiblioModel.FK_CentroidClusters_CentroidClusters" FromRole="CentroidClusters" ToRole="CentroidClusters1" />
+          <NavigationProperty Name="CentroidCluster1" Relationship="BiblioModel.FK_CentroidClusters_CentroidClusters" FromRole="CentroidClusters1" ToRole="CentroidClusters" />
+          <NavigationProperty Name="Document" Relationship="BiblioModel.FK_CentroidClusters_Document" FromRole="CentroidClusters" ToRole="Document" />
+          <NavigationProperty Name="ClusteredBooks" Relationship="BiblioModel.FK_ClusteredBooks_CentroidClusters" FromRole="CentroidClusters" ToRole="ClusteredBooks" />
+        </EntityType>
+        <EntityType Name="ClusteredBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClusterId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CentroidCluster" Relationship="BiblioModel.FK_ClusteredBooks_CentroidClusters" FromRole="ClusteredBooks" ToRole="CentroidClusters" />
+          <NavigationProperty Name="Document" Relationship="BiblioModel.FK_ClusteredBooks_Document" FromRole="ClusteredBooks" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="ClusterError">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Iteration" Type="Int32" Nullable="false" />
+          <Property Name="ClusterNumber" Type="Int32" Nullable="false" />
+          <Property Name="OldCentriodId" Type="Int32" Nullable="false" />
+          <Property Name="NewCentroidId" Type="Int32" Nullable="false" />
+          <Property Name="Error" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Document" Relationship="BiblioModel.FK_ClusterErrors_Document" FromRole="ClusterErrors" ToRole="Document" />
+          <NavigationProperty Name="Document1" Relationship="BiblioModel.FK_ClusterErrors_Document1" FromRole="ClusterErrors" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="254" Unicode="true" FixedLength="false" />
+          <Property Name="AdditionalTitle" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Serial" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="BBK" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Author" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Editor" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Publish" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="ImprintYear" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FirstYear" Type="Int32" />
+          <Property Name="LastYear" Type="Int32" />
+          <Property Name="PartNumber" Type="Int32" />
+          <Property Name="Part" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="PartName" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Remark" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Illustrations" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Stuff" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="Biblio" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="ISBN" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="ISSN" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="LongFileName" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="LocalCode" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="LocalNumber" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="DocumentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="CreateDate" Type="Int64" Nullable="false" />
+          <Property Name="UpdateDate" Type="Int64" Nullable="false" />
+          <Property Name="Pages" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Edition" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="Volume" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="VolumeNumber" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentAuthor" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentPublish" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="ParentEdition" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="ParentEditor" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentAdditionalTitle" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentImprintYear" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ParentCity" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="ParentTitle" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ParentVolumeName" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentPartName" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentVolume" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ParentPart" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SerialParal" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="SerialAdditionalTitle" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="SerialEditor" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="SerialPart" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="SerialPartName" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="SerialISSN" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="IsParent" Type="Int16" />
+          <Property Name="Annotation1" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation2" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation3" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation4" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation5" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation6" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation7" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation8" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation9" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation10" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation11" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation12" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation13" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation14" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation15" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <Property Name="Annotation16" Type="String" MaxLength="251" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CentroidClusters" Relationship="BiblioModel.FK_CentroidClusters_Document" FromRole="Document" ToRole="CentroidClusters" />
+          <NavigationProperty Name="ClusteredBooks" Relationship="BiblioModel.FK_ClusteredBooks_Document" FromRole="Document" ToRole="ClusteredBooks" />
+          <NavigationProperty Name="ClusterErrors" Relationship="BiblioModel.FK_ClusterErrors_Document" FromRole="Document" ToRole="ClusterErrors" />
+          <NavigationProperty Name="ClusterErrors1" Relationship="BiblioModel.FK_ClusterErrors_Document1" FromRole="Document" ToRole="ClusterErrors" />
+          <NavigationProperty Name="DocumentType" Relationship="BiblioModel.FK_Document_DocumentTypes" FromRole="Document" ToRole="DocumentTypes" />
+          <NavigationProperty Name="LastBookUpdates" Relationship="BiblioModel.FK_LastBookUpdates_Document" FromRole="Document" ToRole="LastBookUpdates" />
+          <NavigationProperty Name="LastBookUpdates1" Relationship="BiblioModel.FK_LastBookUpdates_documents" FromRole="Document" ToRole="LastBookUpdates" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="254" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Documents" Relationship="BiblioModel.FK_Document_DocumentTypes" FromRole="DocumentTypes" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="LastBookUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ComparedWithBookId" Type="Int32" Nullable="false" />
+          <Property Name="LastSnippet" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Document" Relationship="BiblioModel.FK_LastBookUpdates_Document" FromRole="LastBookUpdates" ToRole="Document" />
+          <NavigationProperty Name="Document1" Relationship="BiblioModel.FK_LastBookUpdates_documents" FromRole="LastBookUpdates" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="SearchResult">
+          <Key>
+            <PropertyRef Name="WordId1" />
+            <PropertyRef Name="WordId2" />
+          </Key>
+          <Property Name="WordId1" Type="Int32" Nullable="false" />
+          <Property Name="WordId2" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Snippet">
+          <Key>
+            <PropertyRef Name="WordId1" />
+            <PropertyRef Name="WordId2" />
+          </Key>
+          <Property Name="WordId1" Type="Int32" Nullable="false" />
+          <Property Name="WordId2" Type="Int32" Nullable="false" />
+          <Property Name="Snippet1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Word1" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="WordsFrequencies" Relationship="BiblioModel.FK_WordsFrequency_Words1" FromRole="Words" ToRole="WordsFrequency" />
+        </EntityType>
+        <EntityType Name="WordsFrequency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="WordId" Type="Int32" Nullable="false" />
+          <Property Name="Frequency" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Word" Relationship="BiblioModel.FK_WordsFrequency_Words1" FromRole="WordsFrequency" ToRole="Words" />
+        </EntityType>
+        <Association Name="FK_CentroidClusters_CentroidClusters">
+          <End Role="CentroidClusters" Type="BiblioModel.CentroidCluster" Multiplicity="0..1" />
+          <End Role="CentroidClusters1" Type="BiblioModel.CentroidCluster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CentroidClusters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CentroidClusters1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CentroidClusters_Document">
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="1" />
+          <End Role="CentroidClusters" Type="BiblioModel.CentroidCluster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CentroidClusters">
+              <PropertyRef Name="CentroidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusteredBooks_CentroidClusters">
+          <End Role="CentroidClusters" Type="BiblioModel.CentroidCluster" Multiplicity="1" />
+          <End Role="ClusteredBooks" Type="BiblioModel.ClusteredBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CentroidClusters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusteredBooks">
+              <PropertyRef Name="ClusterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusteredBooks_Document">
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="1" />
+          <End Role="ClusteredBooks" Type="BiblioModel.ClusteredBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusteredBooks">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusterErrors_Document">
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="1" />
+          <End Role="ClusterErrors" Type="BiblioModel.ClusterError" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusterErrors">
+              <PropertyRef Name="OldCentriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClusterErrors_Document1">
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="1" />
+          <End Role="ClusterErrors" Type="BiblioModel.ClusterError" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClusterErrors">
+              <PropertyRef Name="NewCentroidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_DocumentTypes">
+          <End Role="DocumentTypes" Type="BiblioModel.DocumentType" Multiplicity="1" />
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastBookUpdates_Document">
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="1" />
+          <End Role="LastBookUpdates" Type="BiblioModel.LastBookUpdate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastBookUpdates">
+              <PropertyRef Name="ComparedWithBookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastBookUpdates_documents">
+          <End Role="Document" Type="BiblioModel.Document" Multiplicity="1" />
+          <End Role="LastBookUpdates" Type="BiblioModel.LastBookUpdate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastBookUpdates">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WordsFrequency_Words1">
+          <End Role="Words" Type="BiblioModel.Word" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WordsFrequency" Type="BiblioModel.WordsFrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Words">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WordsFrequency">
+              <PropertyRef Name="WordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BiblioModelStoreContainer" CdmEntityContainer="BiblioEntities">
+          <EntitySetMapping Name="CentroidClusters">
+            <EntityTypeMapping TypeName="BiblioModel.CentroidCluster">
+              <MappingFragment StoreEntitySet="CentroidClusters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CentroidId" ColumnName="CentroidId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClusteredBooks">
+            <EntityTypeMapping TypeName="BiblioModel.ClusteredBook">
+              <MappingFragment StoreEntitySet="ClusteredBooks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClusterErrors">
+            <EntityTypeMapping TypeName="BiblioModel.ClusterError">
+              <MappingFragment StoreEntitySet="ClusterErrors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Iteration" ColumnName="Iteration" />
+                <ScalarProperty Name="ClusterNumber" ColumnName="ClusterNumber" />
+                <ScalarProperty Name="OldCentriodId" ColumnName="OldCentriodId" />
+                <ScalarProperty Name="NewCentroidId" ColumnName="NewCentroidId" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="BiblioModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AdditionalTitle" ColumnName="AdditionalTitle" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="BBK" ColumnName="BBK" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Editor" ColumnName="Editor" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ImprintYear" ColumnName="ImprintYear" />
+                <ScalarProperty Name="FirstYear" ColumnName="FirstYear" />
+                <ScalarProperty Name="LastYear" ColumnName="LastYear" />
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+                <ScalarProperty Name="Part" ColumnName="Part" />
+                <ScalarProperty Name="PartName" ColumnName="PartName" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Illustrations" ColumnName="Illustrations" />
+                <ScalarProperty Name="Stuff" ColumnName="Stuff" />
+                <ScalarProperty Name="Biblio" ColumnName="Biblio" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="ISSN" ColumnName="ISSN" />
+                <ScalarProperty Name="LongFileName" ColumnName="LongFileName" />
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+                <ScalarProperty Name="LocalNumber" ColumnName="LocalNumber" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="VolumeNumber" ColumnName="VolumeNumber" />
+                <ScalarProperty Name="ParentAuthor" ColumnName="ParentAuthor" />
+                <ScalarProperty Name="ParentPublish" ColumnName="ParentPublish" />
+                <ScalarProperty Name="ParentEdition" ColumnName="ParentEdition" />
+                <ScalarProperty Name="ParentEditor" ColumnName="ParentEditor" />
+                <ScalarProperty Name="ParentAdditionalTitle" ColumnName="ParentAdditionalTitle" />
+                <ScalarProperty Name="ParentImprintYear" ColumnName="ParentImprintYear" />
+                <ScalarProperty Name="ParentCity" ColumnName="ParentCity" />
+                <ScalarProperty Name="ParentTitle" ColumnName="ParentTitle" />
+                <ScalarProperty Name="ParentVolumeName" ColumnName="ParentVolumeName" />
+                <ScalarProperty Name="ParentPartName" ColumnName="ParentPartName" />
+                <ScalarProperty Name="ParentVolume" ColumnName="ParentVolume" />
+                <ScalarProperty Name="ParentPart" ColumnName="ParentPart" />
+                <ScalarProperty Name="SerialParal" ColumnName="SerialParal" />
+                <ScalarProperty Name="SerialAdditionalTitle" ColumnName="SerialAdditionalTitle" />
+                <ScalarProperty Name="SerialEditor" ColumnName="SerialEditor" />
+                <ScalarProperty Name="SerialPart" ColumnName="SerialPart" />
+                <ScalarProperty Name="SerialPartName" ColumnName="SerialPartName" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="SerialISSN" ColumnName="SerialISSN" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="Annotation1" ColumnName="Annotation1" />
+                <ScalarProperty Name="Annotation2" ColumnName="Annotation2" />
+                <ScalarProperty Name="Annotation3" ColumnName="Annotation3" />
+                <ScalarProperty Name="Annotation4" ColumnName="Annotation4" />
+                <ScalarProperty Name="Annotation5" ColumnName="Annotation5" />
+                <ScalarProperty Name="Annotation6" ColumnName="Annotation6" />
+                <ScalarProperty Name="Annotation7" ColumnName="Annotation7" />
+                <ScalarProperty Name="Annotation8" ColumnName="Annotation8" />
+                <ScalarProperty Name="Annotation9" ColumnName="Annotation9" />
+                <ScalarProperty Name="Annotation10" ColumnName="Annotation10" />
+                <ScalarProperty Name="Annotation11" ColumnName="Annotation11" />
+                <ScalarProperty Name="Annotation12" ColumnName="Annotation12" />
+                <ScalarProperty Name="Annotation13" ColumnName="Annotation13" />
+                <ScalarProperty Name="Annotation14" ColumnName="Annotation14" />
+                <ScalarProperty Name="Annotation15" ColumnName="Annotation15" />
+                <ScalarProperty Name="Annotation16" ColumnName="Annotation16" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypes">
+            <EntityTypeMapping TypeName="BiblioModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LastBookUpdates">
+            <EntityTypeMapping TypeName="BiblioModel.LastBookUpdate">
+              <MappingFragment StoreEntitySet="LastBookUpdates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="ComparedWithBookId" ColumnName="ComparedWithBookId" />
+                <ScalarProperty Name="LastSnippet" ColumnName="LastSnippet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchResults">
+            <EntityTypeMapping TypeName="BiblioModel.SearchResult">
+              <MappingFragment StoreEntitySet="SearchResults">
+                <ScalarProperty Name="WordId1" ColumnName="WordId1" />
+                <ScalarProperty Name="WordId2" ColumnName="WordId2" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Snippets">
+            <EntityTypeMapping TypeName="BiblioModel.Snippet">
+              <MappingFragment StoreEntitySet="Snippets">
+                <ScalarProperty Name="WordId1" ColumnName="WordId1" />
+                <ScalarProperty Name="WordId2" ColumnName="WordId2" />
+                <ScalarProperty Name="Snippet1" ColumnName="Snippet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Words">
+            <EntityTypeMapping TypeName="BiblioModel.Word">
+              <MappingFragment StoreEntitySet="Words">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Word1" ColumnName="Word" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WordsFrequencies">
+            <EntityTypeMapping TypeName="BiblioModel.WordsFrequency">
+              <MappingFragment StoreEntitySet="WordsFrequency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

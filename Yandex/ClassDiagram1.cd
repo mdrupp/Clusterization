@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Yandex.Serialization.YandexDeserializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAJAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Serialization\YandexDeserializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Yandex.Serialization.YandexSerializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAJAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Serialization\YandexSerializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Yandex.Serialization.Utf8StringWriter" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Serialization\Utf8StringWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlRequest.GroupBy" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIgCAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>XmlRequest\GroupBy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlRequest.SortBy" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>XmlRequest\SortBy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlRequest.YandexRequest" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAEAAAQAAAAAAAAAAAAAAACAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>XmlRequest\YandexRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Category" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XmlResponse\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Document" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAgEAAAIAAAAAAAgAAAAAACAACAAAAAAA=</HashCode>
+      <FileName>XmlResponse\Document.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Error" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>XmlResponse\Error.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Found" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XmlResponse\Found.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Group" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAACIA=</HashCode>
+      <FileName>XmlResponse\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Grouping" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIgCAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAA=</HashCode>
+      <FileName>XmlResponse\Grouping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Passage" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>XmlResponse\Passage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.Results" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XmlResponse\Results.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.XmlResponse.YandexResponse" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAACAAAgAACAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>XmlResponse\YandexResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.YandexSearchEngine" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>YandexSearchEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yandex.YandexSearchResult" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>YandexSearchResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
